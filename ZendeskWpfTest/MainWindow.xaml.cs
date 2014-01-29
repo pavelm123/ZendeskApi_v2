@@ -33,7 +33,7 @@ namespace ZendeskWpfTest
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //ZendeskApi api = new ZendeskApi(https://surfer123.zendesk.com/api/v2, "surfer123@yandex.ru", "");
-            var apiToken = new ZendeskApi(APIURL.Text, "surfer123@yandex.ru", ""); 
+            var apiToken = new ZendeskApi(APIURL.Text, "surfer123@yandex.ru", "starover"); 
 
             var ticket = apiToken.Tickets.CreateTicket(new Ticket()
             {
@@ -41,6 +41,12 @@ namespace ZendeskWpfTest
                 Comment = new Comment() { Body = "HELP" },
                 Priority = TicketPriorities.Urgent
             });
+
+            var fields = apiToken.Tickets.GetTicketFields();
+            memo.Text = fields.TicketFields.ToString();
+
+
         }
+
     }
 }
